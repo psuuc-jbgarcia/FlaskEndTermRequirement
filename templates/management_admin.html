@@ -116,7 +116,11 @@
                         data-email="{{ customer.email }}"
                         data-phone="{{ customer.phone_number }}"
                         data-address="{{ customer.address }}"
-                        data-status="{{ customer.account_status }}">
+                        data-status="{{ customer.account_status }}"
+                        data-registration_date="{{ customer.registration_date }}">    
+
+                        
+                        
                         <i class="fas fa-edit"></i>
                         </button>
                         <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal" data-id="{{ customer.customer_id }}">
@@ -264,6 +268,13 @@
                                 </div>
                             </div>
                         </div>
+                            <div class="col-md-6">
+                                <label for="editCustomerRegistrationDate" class="form-label">Registration Date</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                    <input type="date" class="form-control" id="editCustomerRegistrationDate" name="registration_date" required>
+                                </div>
+                            </div>
                         <div class="row g-3 mt-4">
                             <div class="col-12 text-end">
                                 <button type="submit" class="btn btn-primary px-4">Update Customer</button>
@@ -312,6 +323,9 @@ $('#deleteCustomerModal').on('show.bs.modal', function(event) {
     var phone = button.data('phone');
     var address = button.data('address');
     var status = button.data('status');
+    var registrationDate = button.data('registration_date');  
+
+var formattedDate = new Date(registrationDate).toISOString().split('T')[0];
     
     var modal = $(this);
     modal.find('#editCustomerId').val(customerId);
@@ -320,6 +334,7 @@ $('#deleteCustomerModal').on('show.bs.modal', function(event) {
     modal.find('#editCustomerPhone').val(phone);
     modal.find('#editCustomerAddress').val(address);
     modal.find('#editCustomerStatus').val(status);
+    modal.find('#editCustomerRegistrationDate').val(formattedDate); 
 });
     document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('addCustomerForm').addEventListener('submit', function(event) {

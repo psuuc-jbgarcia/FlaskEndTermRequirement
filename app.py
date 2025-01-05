@@ -171,14 +171,15 @@ def update_customer():
     phone = request.form['phone']
     address = request.form['address']
     account_status = request.form['account_status']
+    registration_date = request.form['registration_date']  # Capture registration date
 
     cursor = mysql.connection.cursor()
     try:
         cursor.execute("""
             UPDATE customers 
-            SET fullname=%s, email=%s, phone_number=%s, address=%s, account_status=%s
+            SET fullname=%s, email=%s, phone_number=%s, address=%s, account_status=%s, registration_date=%s
             WHERE customer_id=%s
-        """, (fullname, email, phone, address, account_status, customer_id))
+        """, (fullname, email, phone, address, account_status, registration_date, customer_id))
         mysql.connection.commit()
         flash("Customer updated successfully!", "success")
     except Exception as e:
@@ -187,6 +188,7 @@ def update_customer():
     finally:
         cursor.close()
     return redirect(url_for('management'))
+
 
 @app.route('/delete_product', methods=['POST'])
 def delete_product():
