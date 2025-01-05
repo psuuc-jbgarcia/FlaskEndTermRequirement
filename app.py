@@ -135,8 +135,49 @@ def about():
     if 'user_id' not in session:
         flash("Please log in to access the about page.", "warning")
         return redirect(url_for('login'))
-    return render_template('about.html', user_email=session.get('user_email'))
+    
+    user_role = session.get('user_role')  # Assuming role is stored in the session
+    
+    if user_role == 'admin':
+        user_details = {
+            'name': 'EDGARDO GARCIA ULBINADO JR.',
+            'location': 'Zone 1 Baguinay Manaoag Pangasinan',
+            'email': 'eulbinado_21ur0201@psu.edu.com',
+            'phone': '+63 966 167 1776',
+            'age': '21 years old',
+            'sex': 'Male',
+            'birthdate': 'September 15, 2003',
+            'civil_status': 'Single',
+            'religion': 'Roman Catholic',
+            'height': '171 cm',
+            'weight': '59 kg',
+            'nationality': 'Filipino',
+            'parents': 'Mr. & Mrs. Edgardo Ulbinado',
+            'facebook': 'https://www.facebook.com/eg.ulbinado',
+            'instagram': 'https://www.instagram.com/iji_com/',
+            'image': 'images/eg.jpg'
+        }
+    else:
+        user_details = {
+            'name': 'JERICO BAUTISTA GARCIA',
+            'location': 'Zone 3 Payas Santa Barbara Pangasinan',
+            'email': 'garciajerico217@gmail.com',
+            'phone': '+63 951 907 1316',
+            'age': '21 years old',
+            'sex': 'Male',
+            'birthdate': 'September 27, 2003',
+            'civil_status': 'Single',
+            'religion': 'Roman Catholic',
+            'height': '163 cm',
+            'weight': '75 kg',
+            'nationality': 'Filipino',
+            'parents': 'Mr. & Mrs. Jimmy Garcia',
+            'facebook': 'https://www.facebook.com/jerico.garcia.121398',
+            'instagram': 'https://www.instagram.com/v0id98/',
+            'image': 'images/jerico.png'
+        }
 
+    return render_template('about.html', user_email=session.get('user_email'), user_details=user_details)
 
 
 @app.route('/update_product', methods=['POST'])
