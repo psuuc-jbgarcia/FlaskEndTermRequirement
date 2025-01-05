@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> <!-- Font Awesome -->
     <style>
         body {
             background-color: #f8f9fa;
@@ -50,6 +51,11 @@
             font-weight: bold;
             color: #343a40;
         }
+        .input-group-text {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
     </style>
 </head>
 <body>
@@ -57,7 +63,7 @@
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <div class="card">
-                    <h2 class="text-center mb-4">Login</h2>
+                    <h2 class="text-center mb-4"><i class="fas fa-user-circle"></i> Login</h2>
                     
                     {% with messages = get_flashed_messages(with_categories=true) %}
                     {% if messages %}
@@ -75,21 +81,30 @@
                     <form method="POST" action="/login">
                         <div class="mb-3">
                             <label for="email" class="form-label">Email Address</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email"  required>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                            </div>
                         </div>
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                            <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-sign-in-alt"></i> Login</button>
                         </div>
-                     
                     </form>
+                    <p class="footer-text mt-3">
+                        <!-- <a href="/forgot-password"><i class="fas fa-key"></i> Forgot Password?</a> -->
+                    </p>
                 </div>
             </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script> <!-- Font Awesome -->
 </body>
 </html>
