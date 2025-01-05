@@ -7,16 +7,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                    <a class="nav-link {% if request.path == '/home' %}active{% endif %}" href="/home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('management') }}">Management</a>
+                    <a class="nav-link {% if request.endpoint == 'management' %}active{% endif %}" href="{{ url_for('management') }}">Management</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/about">About</a>
+                    <a class="nav-link {% if request.path == '/about' %}active{% endif %}" href="/about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/logout">Logout</a>
+                    <a class="nav-link {% if request.path == '/logout' %}active{% endif %}" href="/logout">Logout</a>
                 </li>
             </ul>
         </div>
@@ -47,6 +47,11 @@
     .navbar-nav .nav-link {
         color: #333 !important;
         font-weight: 600 !important;
+    }
+
+    .navbar-nav .nav-link.active {
+        color: #00b5ad !important;
+        border-bottom: 2px solid #00b5ad !important;
     }
 
     .navbar-nav .nav-link:hover {
